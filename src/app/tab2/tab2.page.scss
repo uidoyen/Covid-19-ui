@@ -1,0 +1,75 @@
+ion-content ion-toolbar {
+    --background: translucent;
+}
+
+ion-list {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+// .country {
+//   &__map {
+//     path {
+//       // fill: transparent !important;
+//       stroke: #002868 !important;
+//       &__highlight {
+//         stroke: #002868 !important;
+//         fill: #fc0 !important;
+//       }
+//     }
+//   }
+// }
+.mapsvg-state {
+    fill: transparent;
+    stroke: #002868 !important;
+    &__highlight {
+        fill: #fc0 !important;
+    }
+}
+
+.info {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    position: absolute;
+    border: 1px solid #333;
+    color: #333;
+    white-space: nowrap;
+    &:first-line {
+        font-weight: bold;
+    }
+    z-index: 1;
+}
+
+.title__margin {
+    margin-bottom: 30px;
+}
+
+.selected {
+    // background-color: gray; 
+    // background: #04040a !important;
+    color: red;
+}
+
+.In-Svg {
+    position: relative;
+    background: transparent;
+    width: 60%;
+    height: 80%;
+    margin: 30px auto;
+}
+
+thead th {
+    cursor: pointer;
+    margin-right: 15px;
+    margin-left: 15px;
+    span {
+        visibility: hidden;
+    }
+    &.active1 {
+        span {
+            visibility: visible;
+        }
+    }
+}

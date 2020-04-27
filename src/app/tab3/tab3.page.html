@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            <img src="../assets/icon/carona.png" alt="Smiley face" height="42" width="42">&nbsp;&nbsp;&nbsp; Nearby
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large"><img src="../assets/icon/carona.png" alt="Smiley face" height="42" width="42">&nbsp;&nbsp;&nbsp;Nearby</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-grid style="margin: 15px;">
+        <ion-row>
+            <ion-col size-md="4" size-sm="4" size-xs="12">
+                <ion-row>
+                    <ion-col size-xs="12">
+                        <h4>
+                            Nearby Cases : {{NearCaseCount}}
+                        </h4>
+                    </ion-col>
+                    <ion-col size-xs="12">
+                        <h6 style="color:red;" *ngIf="NearCaseCount!=0">
+                            Approximately <b>{{NearestDistance}} KM </b> away from nearest confirmed case.
+                        </h6>
+                        <h6 style="color:red;" *ngIf="NearCaseCount==0">
+                            No confirmed case near to You.
+                        </h6>
+                    </ion-col>
+                    <ion-col size-xs="12">
+                        <!-- <div class="form-group"> -->
+                        <input type="text" class="form-control" style="color: black;" [(ngModel)]="searchValue" (ngModelChange)="checkSearchText()" (keydown.enter)="$event.preventDefault()" placeholder="Search By Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                            type="text" #search>
+                        <!-- </div> -->
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col size-md="8" size-sm="8" size-xs="12">
+
+                <agm-map [latitude]="latitude" gestureHandling="cooperative" [longitude]="longitude" [minZoom]="minZoom" [scrollwheel]="false" [zoom]="zoom">
+
+                    <ng-container *ngFor="let m of markers; let i = index">
+                        <!-- [label]="m.label" (markerClick)="clickedMarker(m.label, i)"  [isOpen]="true"-->
+                        <agm-marker [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="m.icon">
+
+                            <agm-info-window *ngIf="m.distance!=undefined">
+                                <div>No Of Cases - {{m.count}}</div>
+
+                                <div>Distance - {{m.content}}</div>
+                            </agm-info-window>
+
+                        </agm-marker>
+
+                    </ng-container>
+
+                </agm-map>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+</ion-content>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#fff" type="ball-clip-rotate-multiple" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
