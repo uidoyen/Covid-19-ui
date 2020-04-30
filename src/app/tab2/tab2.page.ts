@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class Tab2Page implements OnInit {
   countries: any = null;
-  // searchCountry: any;
+  searchCountry: any;
   selectedCountry: String;
   breakdowns: any = null;
   mapsvg: any = null;
@@ -46,7 +46,7 @@ export class Tab2Page implements OnInit {
   p: number = 1;
 
   reverse: boolean;
-  order: string = "provinceOrState";
+  order: string = 'provinceOrState';
   countryNameConfirmed: any;
   totalConfirmedCases: any;
   totalDeaths: any;
@@ -56,7 +56,7 @@ export class Tab2Page implements OnInit {
   constructor(
     private covidService: CovidService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.covidByCountries();
@@ -93,7 +93,7 @@ export class Tab2Page implements OnInit {
     this.currentSelected = index;
     let that = this;
     // console.log(item);
-    this.selectedItem=item;
+    this.selectedItem = item;
     this.selectedCountry = item.location.isoCode;
 
     this.countryNameConfirmed = this.selectedItem.location.countryOrRegion;
@@ -117,7 +117,7 @@ export class Tab2Page implements OnInit {
               provinceOrState: row['location']['provinceOrState'],
             };
           });
-          if (this.selectedCountry == "IN") this.breakdowns.splice(0, 1);
+          if (this.selectedCountry == 'IN') this.breakdowns.splice(0, 1);
           // console.log(this.breakdowns);
           this.displayLineChart();
           that.highlightonLoad();
@@ -168,9 +168,9 @@ export class Tab2Page implements OnInit {
           return item;
         }
       });
-     
+
       if (currentLocation.length != 0) {
-        that.dataDisplay = true;        
+        that.dataDisplay = true;
         that.countryNameConfirmed = currentLocation[0].location.provinceOrState;
         that.totalConfirmedCases = currentLocation[0].totalConfirmedCases;
         that.totalRecoveredCases = currentLocation[0].totalRecoveredCases;
@@ -309,11 +309,11 @@ export class Tab2Page implements OnInit {
         ],
       },
     };
-    if (this.selectedCountry == "US")
+    if (this.selectedCountry == 'US')
       this.lineChart = document.getElementById('lineChart2');
-    else if (this.selectedCountry == "IN")
+    else if (this.selectedCountry == 'IN')
       this.lineChart = document.getElementById('lineChart3');
-    else if (this.selectedCountry == "CA")
+    else if (this.selectedCountry == 'CA')
       this.lineChart = document.getElementById('lineChart4');
 
     var ctx = this.lineChart.getContext('2d');
